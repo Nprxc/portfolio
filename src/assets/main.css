@@ -1,0 +1,93 @@
+@import './base.css';
+
+/* Conteneur principal */
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+  line-height: 1.6; /* Améliore la lisibilité du texte */
+  color: #333; /* Couleur neutre pour le texte */
+  font-family: 'Helvetica Neue', Arial, sans-serif; /* Police lisible et moderne */
+}
+
+/* Lien et éléments d'action */
+a, .green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+    color: #000; /* Changement de couleur pour plus de contraste */
+  }
+}
+
+/* Structure générale pour les grands écrans */
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center;     /* Centrer verticalement */
+    height: 100vh;           /* Le contenu occupe toute la hauteur de la vue */
+    background-color: #f9f9f9; /* Fond doux et agréable pour une meilleure lisibilité */
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* S'assurer que le contenu commence en haut */
+    align-items: flex-start;     /* Aligner le contenu à gauche pour la lecture */
+    padding: 0 2rem;
+    max-width: 100%;
+    margin-top: 50px; /* Donne de l'air en haut de la page */
+  }
+}
+
+/* Titres */
+h1, h2, h3 {
+  color: #222; /* Couleur foncée pour le contraste */
+  font-weight: 600; /* Renforce le poids des titres pour les démarquer */
+  margin-bottom: 1rem; /* Espacement pour plus d'air sous les titres */
+}
+
+/* Paragraphes */
+p {
+  color: #555;
+  margin-bottom: 1.5rem; /* Espacement entre les paragraphes pour faciliter la lecture */
+  max-width: 800px; /* Limiter la largeur des paragraphes pour éviter les lignes trop longues */
+}
+
+/* Boutons et éléments d'action */
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: hsla(160, 100%, 37%, 1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: hsla(160, 100%, 50%, 1);
+}
+
+/* Liens d'action */
+.icon-container:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Grilles pour l'affichage de sections */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1280px;
+}
