@@ -1,29 +1,30 @@
-# portfolio
+# React + FastAPI App
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository provides a minimal example of a React front‑end created with Vite and a Python back‑end powered by FastAPI.
 
-## Recommended IDE Setup
+## Requirements
+- Node.js
+- Python 3.10+
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+## Install dependencies
+```bash
 npm install
+python -m pip install -r backend/requirements.txt
 ```
 
-### Compile and Hot-Reload for Development
+## Development
+Start the back end:
+```bash
+uvicorn backend.main:app --reload
+```
 
-```sh
+In another terminal start the front end:
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+The React app will be available at <http://localhost:5173> and will fetch data from the FastAPI server running on <http://localhost:8000>.
 
-```sh
-npm run build
-```
+## Deployment
+
+Pushes to the `main` branch trigger a GitHub Actions workflow that builds the React application and publishes it to GitHub Pages. The workflow file is located at `.github/workflows/deploy.yml`.
