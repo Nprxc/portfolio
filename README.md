@@ -25,6 +25,3 @@ npm run dev
 
 The React app will be available at <http://localhost:5173> and will fetch data from the FastAPI server running on <http://localhost:8000>.
 
-## Deployment
-
-Pushes to the `main` branch trigger a GitHub Actions workflow that builds the React application and publishes it to GitHub Pages. The workflow file is located at `.github/workflows/deploy.yml`.
