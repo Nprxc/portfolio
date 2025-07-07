@@ -7,6 +7,9 @@ from fastapi.staticfiles import StaticFiles
 
 from ia_engine import generate_response
 
+# In-memory chat history
+chat_history: list[dict[str, str]] = []
+
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
@@ -19,6 +22,12 @@ async def read_index(request: Request):
 
 @app.post("/ask")
 async def ask_question(question: str = Form(...)):
-    """Receive a question and return the AI response."""
+    """Receive a question and return the AI response with history."""
+    # Generate assistant response
     response_text = generate_response(question)
-    return JSONResponse({"response": response_text})
+
+    # Update in-memory history
+    chat_history.append({"role": "user", "text": question})
+    chat_history.append({"role": "assistant", "text": response_text})
+
+    return JSONResponse({"response": response_text, "history": chat_history})

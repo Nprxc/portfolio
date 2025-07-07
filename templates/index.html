@@ -6,19 +6,28 @@
 </head>
 <body>
     <h1>Assistant Cadeaux</h1>
+    <div id="chat-box" style="max-height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 0.5em;"></div>
     <form id="chat-form">
         <input type="text" id="question" name="question" placeholder="Posez votre question" required>
         <button type="submit">Envoyer</button>
     </form>
-    <pre id="response"></pre>
 
     <script>
+    const chatBox = document.getElementById('chat-box');
     document.getElementById('chat-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const res = await fetch('/ask', { method: 'POST', body: formData });
         const data = await res.json();
-        document.getElementById('response').textContent = data.response;
+        // Rebuild chat history
+        chatBox.innerHTML = '';
+        data.history.forEach(msg => {
+            const p = document.createElement('p');
+            p.textContent = (msg.role === 'user' ? 'Vous: ' : 'IA: ') + msg.text;
+            chatBox.appendChild(p);
+        });
+        chatBox.scrollTop = chatBox.scrollHeight;
+        e.target.reset();
     });
     </script>
 </body>
