@@ -1,33 +1,38 @@
-"""FastAPI backend for gift recommendation assistant."""
+### main.py
 
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, Cookie
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+import uuid
 
-from ia_engine import generate_response
-
-# In-memory chat history
-chat_history: list[dict[str, str]] = []
+from ia_engine import GiftAssistantAgent
 
 app = FastAPI()
-
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+# Dictionnaire des agents actifs (clé = session ID)
+agents: dict[str, GiftAssistantAgent] = {}
+
 @app.get("/", response_class=HTMLResponse)
 async def read_index(request: Request):
-    """Return the chat page."""
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/ask")
-async def ask_question(question: str = Form(...)):
-    """Receive a question and return the AI response with history."""
-    # Generate assistant response
-    response_text = generate_response(question)
+async def ask_question(
+    request: Request,
+    question: str = Form(...),
+    session_id: str = Cookie(default=None)
+):
+    if not session_id or session_id not in agents:
+        session_id = str(uuid.uuid4())
+        agents[session_id] = GiftAssistantAgent()
 
-    # Update in-memory history
-    chat_history.append({"role": "user", "text": question})
-    chat_history.append({"role": "assistant", "text": response_text})
+    agent = agents[session_id]
+    response_text = agent.generate(question)
 
-    return JSONResponse({"response": response_text, "history": chat_history})
+    return JSONResponse(
+        {"response": response_text, "history": agent.history},
+        headers={"set-cookie": f"session_id={session_id}; Path=/;"}
+    )

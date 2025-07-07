@@ -1,1 +1,42 @@
-{}
+[
+  {
+    "id": "P001",
+    "titre": "Cadre photo en bois",
+    "description": "Un cadre en bois gravé avec la photo de votre choix. Idéal pour les souvenirs de famille.",
+    "occasions": ["anniversaire", "fête des mères", "noël"],
+    "public": ["famille", "femme", "parent"],
+    "prix": 24.90
+  },
+  {
+    "id": "P002",
+    "titre": "Mug personnalisé avec photo",
+    "description": "Un mug en céramique avec votre image préférée imprimée dessus. Parfait pour les matinées chaleureuses.",
+    "occasions": ["noël", "fête des pères", "anniversaire"],
+    "public": ["homme", "collègue", "famille"],
+    "prix": 12.90
+  },
+  {
+    "id": "P003",
+    "titre": "Porte-clés gravé",
+    "description": "Un petit porte-clés métallique avec une gravure personnalisée. Discret et plein de sens.",
+    "occasions": ["saint valentin", "anniversaire", "cadeau surprise"],
+    "public": ["couple", "ami", "ado"],
+    "prix": 9.90
+  },
+  {
+    "id": "P004",
+    "titre": "Album photo relié",
+    "description": "Un album photo haut de gamme avec vos plus belles photos imprimées. Un vrai livre de souvenirs.",
+    "occasions": ["mariage", "naissance", "fête des grands-parents"],
+    "public": ["famille", "parents", "grands-parents"],
+    "prix": 39.90
+  },
+  {
+    "id": "P005",
+    "titre": "Coussin personnalisé",
+    "description": "Un coussin doux avec une photo imprimée. Idéal pour offrir un peu de confort et beaucoup d’émotion.",
+    "occasions": ["fête des mères", "déménagement", "cadeau romantique"],
+    "public": ["femme", "enfant", "couple"],
+    "prix": 19.90
+  }
+]

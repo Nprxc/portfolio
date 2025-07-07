@@ -5,3 +5,6 @@ aiofiles
 python-multipart
 httpx
 pytest
+sentence_transformers
+dotenv
+faiss-cpu
